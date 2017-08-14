@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "com.github.galcyurio.dagger2todo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    configurations.all {
+        resolutionStrategy.force "com.google.code.findbugs:jsr305:3.0.1"
+    }
+}
+
+dependencies {
+    // Test
+    testCompile "junit:junit:$rootProject.junitVersion"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // Design
+    compile "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+
+    // Dagger dependencies
+    compile "com.google.dagger:dagger-android:$rootProject.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
+
+    // Etc
+    compile "com.google.guava:guava:$rootProject.guavaVersion"
+    compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
+    compile "com.fasterxml.jackson.core:jackson-databind:$rootProject.jacksonVersion"
+
+}
