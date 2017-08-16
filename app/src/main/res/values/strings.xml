@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Dagger2Todo</string>
+
+    <string name="string_new_task">New Task</string>
+    <string name="string_title">Title</string>
+    <string name="string_enter_your_task_here">Enter your Task here.</string>
+    <string name="string_filter">Filter</string>
+    <string name="string_all">All</string>
+    <string name="string_completed">Completed</string>
+    <string name="string_active">Active</string>
+    <string name="string_refresh">Refresh</string>
 </resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Anchor" />
+    <style name="Anchor.Fab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/anchor_fab_margin</item>
+        <item name="android:theme">@style/Base.Theme.AppCompat.Light</item>
+        <item name="fabSize">normal</item>
+    </style>
+
+    <dimen name="anchor_fab_margin">16dp</dimen>
+
+    <!-- Add Task -->
+    <dimen name="anchor_add_task_margin">8dp</dimen>
+</resources>

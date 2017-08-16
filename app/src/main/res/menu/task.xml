@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/menu_filter"
+        android:icon="@drawable/ic_filter_list_white_24dp"
+        android:showAsAction="ifRoom"
+        android:title="@string/string_filter"
+        tools:ignore="AppCompatResource"/>
+
+    <item
+        android:id="@+id/menu_refresh"
+        android:showAsAction="never"
+        android:title="@string/string_refresh"
+        tools:ignore="AppCompatResource"/>
+
+</menu>
