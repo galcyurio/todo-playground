@@ -18,7 +18,7 @@ This android application made with
 and etc.
 <br>
 
-## Motivationw
+## Motivation
 I searched about android architecture and found [google/android-architecture](https://github.com/googlesamples/android-architecture). <br>
 Then, I followed these samples few days. But I found some strange parts. Of course this parts is not fatal errors. But this project and samples must be best practice for android.<br>
 Finally, I stopped following this samples. And started create another version of my best practice.
