@@ -28,15 +28,22 @@ ext {
     minSdkVersion = 21
     targetSdkVersion = 25
     versionCode = 1
-    versionName = '1.0'
+    versionName = '1.0-SNAPSHOT'
 
     constraintLayoutVersion = '1.0.2'
     supportLibraryVersion = '25.3.1'
     junitVersion = '4.12'
     espressoVersion = '2.2.2'
+    assertjVersion = '3.8.0'
+    robolectricVersion = '3.4.2'
+    mockitoVersion = '2.8.47'
+
     daggerVersion = '2.11'
     butterknifeVersion = '8.8.1'
+
     guavaVersion = '23.0-android'
     jacksonVersion = '2.9.0'
     lombokVersion = '1.16.18'
+    timberVersion = '4.5.1'
+    glassfishAnnotationVersion = '10.0-b28'
 }

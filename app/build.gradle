@@ -4,7 +4,7 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
-        applicationId "com.github.galcyurio.dagger2todo"
+        applicationId "com.github.galcyurio.freetodo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -35,6 +35,11 @@ dependencies {
     androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    testCompile ("org.robolectric:robolectric:$rootProject.robolectricVersion", {
+        exclude group: 'com.google.guava', module: 'guava'
+    })
+    testCompile "org.assertj:assertj-core:$rootProject.assertjVersion"
+    testCompile "org.mockito:mockito-core:$rootProject.mockitoVersion"
 
     // Design
     compile "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
@@ -56,5 +61,6 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$rootProject.jacksonVersion"
     compile "org.projectlombok:lombok:$rootProject.lombokVersion"
-    provided 'org.glassfish:javax.annotation:10.0-b28'
+    provided "org.glassfish:javax.annotation:$rootProject.glassfishAnnotationVersion"
+    compile "com.jakewharton.timber:timber:$rootProject.timberVersion"
 }
