@@ -25,6 +25,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import timber.log.Timber;
 
 public class TaskActivity extends BaseActivity implements TaskContract.View {
 
@@ -57,6 +58,9 @@ public class TaskActivity extends BaseActivity implements TaskContract.View {
         switch (item.getItemId()) {
             case R.id.menu_filter:
                 BusProvider.get().post(new Events.FilterBtnClickEvent());
+                break;
+            case R.id.menu_refresh:
+                BusProvider.get().post(new Events.RefreshMenuClickEvent());
                 break;
         }
         return true;
@@ -131,7 +135,13 @@ public class TaskActivity extends BaseActivity implements TaskContract.View {
     @Override
     public void appendTasks(List<Task> tasks) {
         // TODO
-        Toast.makeText(this, "tasks added!", Toast.LENGTH_SHORT).show();
+        Timber.v("append tasks %s", tasks.toString());
+    }
+
+    @Override
+    public void appendTask(Task task) {
+        // TODO
+        Timber.v("append task %s", task.toString());
     }
 
     @Override

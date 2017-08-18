@@ -20,6 +20,8 @@ public interface TaskContract {
 
         void appendTasks(List<Task> tasks);
 
+        void appendTask(Task task);
+
         void clearTasks();
     }
 
@@ -29,6 +31,10 @@ public interface TaskContract {
         void onFilterBtnClicked(Events.FilterBtnClickEvent event);
 
         void onFilterPopupClicked(Events.FilterPopupClickEvent event);
+
+        void onRefreshMenuClicked(Events.RefreshMenuClickEvent event);
+
+        void onTaskSaveSuccessed(Events.TaskSaveSuccessEvent event);
 
         List<Task> fetchTasks(FilterType type);
     }

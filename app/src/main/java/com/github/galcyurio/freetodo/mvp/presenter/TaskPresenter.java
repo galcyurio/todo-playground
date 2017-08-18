@@ -19,12 +19,12 @@ import javax.inject.Inject;
 public final class TaskPresenter implements TaskContract.Presenter {
 
     private final TaskContract.View mView;
-    private final LocalTaskRepository mTaskRepository;
+    private final LocalTaskRepository mLocalTaskRepository;
 
     @Inject
-    TaskPresenter(TaskContract.View view, LocalTaskRepository taskRepository) {
+    TaskPresenter(TaskContract.View view, LocalTaskRepository localTaskRepository) {
         mView = view;
-        mTaskRepository = taskRepository;
+        mLocalTaskRepository = localTaskRepository;
 
         mView.appendTasks(fetchTasks(FilterType.ALL));
     }
@@ -59,19 +59,35 @@ public final class TaskPresenter implements TaskContract.Presenter {
         mView.appendTasks(tasks);
     }
 
+    @Subscribe
+    @Override
+    public void onRefreshMenuClicked(Events.RefreshMenuClickEvent event) {
+        mView.clearTasks();
+        mView.appendTasks(fetchTasks(FilterType.ALL));
+    }
+
+    @Subscribe
+    @Override
+    public void onTaskSaveSuccessed(Events.TaskSaveSuccessEvent event) {
+        Task task = event.getTask();
+        mView.appendTasks(Lists.newArrayList(task));
+    }
+
     @Override
     public List<Task> fetchTasks(FilterType type) {
         List<Task> tasks = Lists.newArrayList();
-
-        // TODO: get tasks from repository
         switch (type) {
             case ALL:
+                tasks.addAll(mLocalTaskRepository.getTasks());
                 break;
             case ACTIVE:
+                // TODO
                 break;
             case COMPLETED:
+                // TODO:
                 break;
         }
+
         return tasks;
     }
 }

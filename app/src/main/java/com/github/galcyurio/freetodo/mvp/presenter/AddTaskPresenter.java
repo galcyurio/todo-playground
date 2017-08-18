@@ -51,6 +51,7 @@ public class AddTaskPresenter implements AddTaskContract.Presenter {
 
         if(mLocalTaskRepository.saveTask(task) > 0) {
             // when success
+            BusProvider.get().post(new Events.TaskSaveSuccessEvent(task));
             mView.showSuccessMessage();
             mView.showTaskListUi();
         } else {
