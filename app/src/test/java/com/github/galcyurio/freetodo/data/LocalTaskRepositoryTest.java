@@ -1,5 +1,6 @@
 package com.github.galcyurio.freetodo.data;
 
+import com.github.galcyurio.freetodo.commons.FilterType;
 import com.github.galcyurio.freetodo.data.model.Task;
 import com.github.galcyurio.freetodo.data.source.DbHelper;
 import com.github.galcyurio.freetodo.data.source.LocalTaskRepository;
@@ -74,7 +75,7 @@ public class LocalTaskRepositoryTest {
             System.out.println("id = " + id);
         }
 
-        List<Task> fetchedTasks = mLocalTaskRepository.getTasks();
+        List<Task> fetchedTasks = mLocalTaskRepository.getTasks(FilterType.ALL);
         System.out.println("fetchedTasks = " + fetchedTasks);
 
         assertThat(fetchedTasks.size() == tasks.size()).isTrue();
@@ -82,7 +83,7 @@ public class LocalTaskRepositoryTest {
     }
 
     @Test
-    public void WHEN__save_after_update_task__THEN__should_return_positive() {
+    public void WHEN__save_after_update_task__THEN__should_return_true() {
         // save one task
         Task originalTask = new Task("originalTask title", "originalTask desc");
         mLocalTaskRepository.saveTask(originalTask);
@@ -90,23 +91,23 @@ public class LocalTaskRepositoryTest {
         // update the task using uuid
         originalTask.setTitle("updated title");
         originalTask.setDescription("updated desc");
-        int result = mLocalTaskRepository.updateTask(originalTask);
-        assertThat(result).isPositive();
+        boolean result = mLocalTaskRepository.updateTask(originalTask);
+        assertThat(result).isTrue();
     }
 
     @Test
-    public void WHEN__save_after_complete_task__THEN__should_return_positive() {
+    public void WHEN__save_after_complete_task__THEN__should_return_true() {
         Task task = new Task("dummy title", "dummy desc");
         task.setCompleted(true);
         long taskId = mLocalTaskRepository.saveTask(task);
         assertThat(taskId).isPositive();
 
-        int actual = mLocalTaskRepository.completeTask(task);
-        assertThat(actual).isPositive();
+        boolean actual = mLocalTaskRepository.completeTask(task);
+        assertThat(actual).isTrue();
     }
 
     @Test
-    public void WHEN__save_after_delete_task__THEN__should_return_positive() {
+    public void WHEN__save_after_delete_task__THEN__should_return_true() {
         Task task1 = new Task("title", "desc");
         Task task2 = new Task("asdf", "zxcv");
 
@@ -116,13 +117,51 @@ public class LocalTaskRepositoryTest {
         assertThat(save1).isPositive();
         assertThat(save2).isPositive();
 
-        int delete = mLocalTaskRepository.deleteTask(task2);
+        boolean delete = mLocalTaskRepository.deleteTask(task2);
 
-        assertThat(delete).isPositive();
+        assertThat(delete).isTrue();
 
-        List<Task> tasks = mLocalTaskRepository.getTasks();
+        List<Task> tasks = mLocalTaskRepository.getTasks(FilterType.ALL);
         assertThat(tasks.size()).isEqualTo(1);
         assertThat(tasks.get(0)).isEqualToComparingFieldByFieldRecursively(task1);
+    }
+
+    @Test
+    public void WHEN__save_after_get_by_filter__THEN__should_return_filtered_tasks() {
+        List<Task> newTasks = Lists.newArrayList(
+                new Task("completed", "completed desc", true),
+                new Task("active", "active desc", false),
+                new Task("completed2", "completed2 desc", true),
+                new Task("active2", "active2 desc", false));
+
+        for(Task task : newTasks) {
+            mLocalTaskRepository.saveTask(task);
+        }
+
+        List<Task> tasks = mLocalTaskRepository.getTasks(FilterType.ALL);
+        System.out.println(tasks.toString());
+        assertThat(tasks.size()).isEqualTo(newTasks.size());
+
+        List<Task> activeTasks = mLocalTaskRepository.getTasks(FilterType.ACTIVE);
+        for (Task task : activeTasks) {
+            System.out.println(task.toString());
+            assertThat(task.isCompleted()).isFalse();
+        }
+
+        List<Task> completedTasks = mLocalTaskRepository.getTasks(FilterType.COMPLETED);
+        for (Task task : completedTasks) {
+            System.out.println(task.toString());
+            assertThat(task.isCompleted()).isTrue();
+        }
+    }
+
+    @Test
+    public void WHEN__activate_task__THEN__should_return_true() {
+        Task task = new Task("title", "desc", true);
+        mLocalTaskRepository.saveTask(task);
+
+        boolean actual = mLocalTaskRepository.activateTask(task);
+        assertThat(actual).isTrue();
     }
 
     // ~ Invalid =================================================================
@@ -130,8 +169,8 @@ public class LocalTaskRepositoryTest {
     @Test
     public void WHEN__complete_unknown_task__THEN__should_return_zero() {
         Task task = new Task();
-        int actual = mLocalTaskRepository.completeTask(task);
-        assertThat(actual).isZero();
+        boolean actual = mLocalTaskRepository.completeTask(task);
+        assertThat(actual).isFalse();
     }
 
     @Test
@@ -142,7 +181,7 @@ public class LocalTaskRepositoryTest {
 
     @Test
     public void WHEN__get_tasks_from_empty_db__THEN__should_return_empty_list() {
-        List<Task> tasks = mLocalTaskRepository.getTasks();
+        List<Task> tasks = mLocalTaskRepository.getTasks(FilterType.ALL);
         assertThat(tasks).isNotNull();
         assertThat(tasks.size()).isZero();
     }

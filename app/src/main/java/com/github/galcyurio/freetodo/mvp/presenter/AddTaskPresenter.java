@@ -25,6 +25,11 @@ public class AddTaskPresenter implements AddTaskContract.Presenter {
     }
 
     @Override
+    public void start() {
+
+    }
+
+    @Override
     public void registerBus() {
         BusProvider.get().register(this);
     }

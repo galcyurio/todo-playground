@@ -22,6 +22,11 @@ public class Events {
         private FilterType type;
     }
 
+    @AllArgsConstructor @Getter
+    public static final class TaskCheckedChangeEvent {
+        private Task task;
+        private boolean isChecked;
+    }
 
     // ~ AddTaskActivity =========================================================
     @AllArgsConstructor @Getter

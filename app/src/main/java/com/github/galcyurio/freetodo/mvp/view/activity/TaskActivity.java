@@ -9,8 +9,10 @@ import com.github.galcyurio.freetodo.commons.FilterType;
 import com.github.galcyurio.freetodo.data.model.Task;
 import com.github.galcyurio.freetodo.di.component.DaggerTaskComponent;
 import com.github.galcyurio.freetodo.di.module.TaskPresenterModule;
+import com.github.galcyurio.freetodo.mvp.adapter.TaskAdapter;
 import com.github.galcyurio.freetodo.mvp.contract.TaskContract;
 import com.github.galcyurio.freetodo.mvp.presenter.TaskPresenter;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 
@@ -18,20 +20,22 @@ import javax.inject.Inject;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
-import android.widget.Toast;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import timber.log.Timber;
 
 public class TaskActivity extends BaseActivity implements TaskContract.View {
 
     @Inject TaskPresenter mPresenter;
+    @Inject TaskAdapter mTaskAdapter;
 
     @BindView(R.id.ta_btnAddTask) View mBtnAddTask;
+    @BindView(R.id.ta_recyclerTasks) RecyclerView mRecyclerTasks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,11 @@ public class TaskActivity extends BaseActivity implements TaskContract.View {
                 .taskPresenterModule(new TaskPresenterModule(this))
                 .build()
                 .inject(this);
+
+        mRecyclerTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        mRecyclerTasks.setAdapter(mTaskAdapter);
+
+        mPresenter.start();
     }
 
     @Override
@@ -133,20 +142,20 @@ public class TaskActivity extends BaseActivity implements TaskContract.View {
     }
 
     @Override
-    public void appendTasks(List<Task> tasks) {
-        // TODO
-        Timber.v("append tasks %s", tasks.toString());
+    public void addTasks(List<Task> tasks) {
+        mTaskAdapter.addTasks(tasks);
+        mTaskAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void appendTask(Task task) {
-        // TODO
-        Timber.v("append task %s", task.toString());
+    public void addTask(Task task) {
+        mTaskAdapter.addTasks(Lists.newArrayList(task));
+        mTaskAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void clearTasks() {
-        // TODO
-        Toast.makeText(this, "clear!", Toast.LENGTH_SHORT).show();
+        mTaskAdapter.clearTasks();
+        mTaskAdapter.notifyDataSetChanged();
     }
 }

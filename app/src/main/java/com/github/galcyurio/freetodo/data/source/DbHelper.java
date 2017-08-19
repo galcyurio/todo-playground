@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import timber.log.Timber;
 
 /**
  * @author galcyurio
@@ -14,7 +15,7 @@ public class DbHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "task.db";
     private static final String COMMA = ",";
 
-    private static final String SQL_TASK_TABLE =
+    private static final String V1_SQL_TASK_TABLE =
             "CREATE TABLE " + TaskPersistenceContract.TaskEntry.TABLE_NAME + " (" +
                     TaskPersistenceContract.TaskEntry._ID + TaskPersistenceContract.TaskEntry._ID_TYPE + COMMA +
                     TaskPersistenceContract.TaskEntry.COLUMN_UUID_NAME + TaskPersistenceContract.TaskEntry.COLUMN_UUID_TYPE + COMMA +
@@ -36,27 +37,35 @@ public class DbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        int upgradeVersion = oldVersion;
+        while(++upgradeVersion <= newVersion) {
+            switch (upgradeVersion) {
+                case 2:
+                    break;
+            }
+        }
+    }
 
     public boolean createTables(SQLiteDatabase db) {
-        boolean result = false;
         try {
-            db.execSQL(SQL_TASK_TABLE);
-            result = true;
+            db.execSQL(V1_SQL_TASK_TABLE);
+            Timber.i("Tables created");
+            return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Timber.e(e, "Failed create tables");
+            return false;
         }
-        return result;
     }
 
     public boolean clearTables(SQLiteDatabase db) {
-        boolean result = false;
         try {
             db.execSQL(SQL_DROP_TASK_TABLE);
-            result = true;
+            Timber.i("Tables cleared");
+            return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            Timber.e(e, "Failed clear tables");
+            return false;
         }
-        return result;
     }
 }

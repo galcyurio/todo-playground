@@ -1,4 +1,4 @@
-package com.github.galcyurio.freetodo.commons;
+package com.github.galcyurio.freetodo.commons.log;
 
 import android.util.Log;
 import timber.log.Timber;

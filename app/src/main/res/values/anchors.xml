@@ -9,8 +9,27 @@
         <item name="fabSize">normal</item>
     </style>
 
+    <style name="Anchor.TextView" />
+    <style name="Anchor.TextView.OneLine">
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Anchor.TaskItem" />
+    <style name="Anchor.TaskItem.TextView">
+
+    </style>
+
     <dimen name="anchor_fab_margin">16dp</dimen>
 
     <!-- Add Task -->
     <dimen name="anchor_add_task_margin">8dp</dimen>
+
+    <!-- Task Item -->
+    <dimen name="anchor_task_item_checkbox_right_margin">16dp</dimen>
+    <dimen name="anchor_task_item_title_text_size">16sp</dimen>
+    <dimen name="anchor_task_item_description_text_size">13sp</dimen>
+    <dimen name="anchor_task_item_title_bottom_margin">4dp</dimen>
+
 </resources>

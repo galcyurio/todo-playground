@@ -25,8 +25,11 @@ public final class TaskPresenter implements TaskContract.Presenter {
     TaskPresenter(TaskContract.View view, LocalTaskRepository localTaskRepository) {
         mView = view;
         mLocalTaskRepository = localTaskRepository;
+    }
 
-        mView.appendTasks(fetchTasks(FilterType.ALL));
+    @Override
+    public void start() {
+        mView.addTasks(fetchTasks(FilterType.ALL));
     }
 
     @Override
@@ -56,38 +59,37 @@ public final class TaskPresenter implements TaskContract.Presenter {
     public void onFilterPopupClicked(Events.FilterPopupClickEvent event) {
         FilterType type = event.getType();
         List<Task> tasks = fetchTasks(type);
-        mView.appendTasks(tasks);
+
+        mView.clearTasks();
+        mView.addTasks(tasks);
     }
 
     @Subscribe
     @Override
     public void onRefreshMenuClicked(Events.RefreshMenuClickEvent event) {
         mView.clearTasks();
-        mView.appendTasks(fetchTasks(FilterType.ALL));
+        mView.addTasks(fetchTasks(FilterType.ALL));
     }
 
     @Subscribe
     @Override
     public void onTaskSaveSuccessed(Events.TaskSaveSuccessEvent event) {
         Task task = event.getTask();
-        mView.appendTasks(Lists.newArrayList(task));
+        mView.addTasks(Lists.newArrayList(task));
+    }
+
+    @Subscribe
+    @Override
+    public void onTaskCheckedChangeEvent(Events.TaskCheckedChangeEvent event) {
+        if (event.isChecked()) {
+            mLocalTaskRepository.completeTask(event.getTask());
+        } else {
+            mLocalTaskRepository.activateTask(event.getTask());
+        }
     }
 
     @Override
     public List<Task> fetchTasks(FilterType type) {
-        List<Task> tasks = Lists.newArrayList();
-        switch (type) {
-            case ALL:
-                tasks.addAll(mLocalTaskRepository.getTasks());
-                break;
-            case ACTIVE:
-                // TODO
-                break;
-            case COMPLETED:
-                // TODO:
-                break;
-        }
-
-        return tasks;
+        return mLocalTaskRepository.getTasks(type);
     }
 }

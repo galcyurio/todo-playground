@@ -1,7 +1,7 @@
 package com.github.galcyurio.freetodo.app;
 
 import com.github.galcyurio.freetodo.BuildConfig;
-import com.github.galcyurio.freetodo.commons.ReleaseTree;
+import com.github.galcyurio.freetodo.commons.log.ReleaseTree;
 import com.github.galcyurio.freetodo.di.component.ApplicationComponent;
 import com.github.galcyurio.freetodo.di.component.DaggerApplicationComponent;
 import com.github.galcyurio.freetodo.di.module.ApplicationModule;

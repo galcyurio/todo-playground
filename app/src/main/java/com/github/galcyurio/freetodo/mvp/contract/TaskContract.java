@@ -18,9 +18,9 @@ public interface TaskContract {
 
         void showFilterPopupUi();
 
-        void appendTasks(List<Task> tasks);
+        void addTasks(List<Task> tasks);
 
-        void appendTask(Task task);
+        void addTask(Task task);
 
         void clearTasks();
     }
@@ -35,6 +35,8 @@ public interface TaskContract {
         void onRefreshMenuClicked(Events.RefreshMenuClickEvent event);
 
         void onTaskSaveSuccessed(Events.TaskSaveSuccessEvent event);
+
+        void onTaskCheckedChangeEvent(Events.TaskCheckedChangeEvent event);
 
         List<Task> fetchTasks(FilterType type);
     }

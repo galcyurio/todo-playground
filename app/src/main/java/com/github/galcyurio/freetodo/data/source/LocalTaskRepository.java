@@ -1,5 +1,6 @@
 package com.github.galcyurio.freetodo.data.source;
 
+import com.github.galcyurio.freetodo.commons.FilterType;
 import com.github.galcyurio.freetodo.data.model.Task;
 import com.google.common.collect.Lists;
 
@@ -29,7 +30,6 @@ public class LocalTaskRepository {
             TaskPersistenceContract.TaskEntry.COLUMN_COMPLETED_NAME
     };
 
-    private final int NEGATIVE = -1;
     private final int FALSE = 0;
     private final int TRUE = 1;
 
@@ -82,14 +82,38 @@ public class LocalTaskRepository {
     }
 
     /**
-     * This allows get all tasks.
+     * This allows get all tasks by {@link FilterType}.
      *
-     * @return all tasks; if length equals 0, empty ArrayList
+     * @param filterType want to type <br/>
+     *                   (e.g. {@link FilterType#ALL}, {@link FilterType#ACTIVE}, {@link FilterType#COMPLETED})
+     * @return filtered tasks; if length equals 0, return empty ArrayList.
      */
-    public List<Task> getTasks() {
+    public List<Task> getTasks(FilterType filterType) {
+        filterType = filterType == null ? FilterType.ALL : filterType;
+        String whereClause;
+        String[] whereArgs;
+
+        switch (filterType) {
+            case ALL:
+                whereClause = null;
+                whereArgs = null;
+                break;
+            case ACTIVE:
+                whereClause = TaskPersistenceContract.TaskEntry.COLUMN_COMPLETED_NAME + " = ?";
+                whereArgs = new String[]{String.valueOf(FALSE)};
+                break;
+            case COMPLETED:
+                whereClause = TaskPersistenceContract.TaskEntry.COLUMN_COMPLETED_NAME + " = ?";
+                whereArgs = new String[]{String.valueOf(TRUE)};
+                break;
+            default:
+                whereClause = null;
+                whereArgs = null;
+        }
+
         try (
                 SQLiteDatabase db = mDbHelper.getReadableDatabase();
-                Cursor cursor = db.query(TaskPersistenceContract.TaskEntry.TABLE_NAME, COLUMNS, null, null, null, null, null)
+                Cursor cursor = db.query(TaskPersistenceContract.TaskEntry.TABLE_NAME, COLUMNS, whereClause, whereArgs, null, null, null)
         ) {
             return cursorToTasks(cursor);
         }
@@ -102,9 +126,9 @@ public class LocalTaskRepository {
      * </pre>
      *
      * @param task want to update
-     * @return the number of tasks affected
+     * @return true if success; false if fail.
      */
-    public int updateTask(Task task) {
+    public boolean updateTask(Task task) {
         checkNotNull(task);
 
         String whereClause = TaskPersistenceContract.TaskEntry.COLUMN_UUID_NAME + " = ?";
@@ -112,7 +136,7 @@ public class LocalTaskRepository {
         ContentValues cv = taskToContentValues(task);
 
         try (SQLiteDatabase db = mDbHelper.getWritableDatabase()) {
-            return db.update(TaskPersistenceContract.TaskEntry.TABLE_NAME, cv, whereClause, whereArgs);
+            return db.update(TaskPersistenceContract.TaskEntry.TABLE_NAME, cv, whereClause, whereArgs) == TRUE;
         }
     }
 
@@ -120,9 +144,9 @@ public class LocalTaskRepository {
      * This allows {@link Task} to set completed.
      *
      * @param task want to set completed.
-     * @return the number of task affected.
+     * @return true if success; false if fail.
      */
-    public int completeTask(Task task) {
+    public boolean completeTask(Task task) {
         checkNotNull(task);
         UUID.fromString(task.getUuid());
 
@@ -134,7 +158,25 @@ public class LocalTaskRepository {
         cv.put(TaskPersistenceContract.TaskEntry.COLUMN_COMPLETED_NAME, true);
 
         try (SQLiteDatabase db = mDbHelper.getWritableDatabase()) {
-            return db.update(TaskPersistenceContract.TaskEntry.TABLE_NAME, cv, whereClause, whereArgs);
+            return db.update(TaskPersistenceContract.TaskEntry.TABLE_NAME, cv, whereClause, whereArgs) == TRUE;
+        }
+    }
+
+    /**
+     * This allows activate one {@link Task}.
+     *
+     * @param task want to activate
+     * @return true if success; false if fail.
+     */
+    public boolean activateTask(Task task) {
+        String whereClause = TaskPersistenceContract.TaskEntry.COLUMN_UUID_NAME + " = ?";
+        String[] whereArgs = {task.getUuid()};
+
+        ContentValues cv = new ContentValues();
+        cv.put(TaskPersistenceContract.TaskEntry.COLUMN_COMPLETED_NAME, false);
+
+        try(SQLiteDatabase db = mDbHelper.getWritableDatabase()) {
+            return db.update(TaskPersistenceContract.TaskEntry.TABLE_NAME, cv, whereClause, whereArgs) == TRUE;
         }
     }
 
@@ -142,9 +184,9 @@ public class LocalTaskRepository {
      * This allows delete one task.
      *
      * @param task want to delete {@link Task}.
-     * @return the number of tasks affected.
+     * @return true if success; false if fail.
      */
-    public int deleteTask(Task task) {
+    public boolean deleteTask(Task task) {
         checkNotNull(task);
         UUID.fromString(task.getUuid());
 
@@ -152,7 +194,7 @@ public class LocalTaskRepository {
         String[] whereArgs = {task.getUuid()};
 
         try (SQLiteDatabase db = mDbHelper.getWritableDatabase()) {
-            return db.delete(TaskPersistenceContract.TaskEntry.TABLE_NAME, whereClause, whereArgs);
+            return db.delete(TaskPersistenceContract.TaskEntry.TABLE_NAME, whereClause, whereArgs) == TRUE;
         }
     }
 
