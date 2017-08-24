@@ -11,7 +11,6 @@ import com.github.galcyurio.freetodo.di.component.DaggerTaskComponent;
 import com.github.galcyurio.freetodo.di.module.TaskPresenterModule;
 import com.github.galcyurio.freetodo.mvp.adapter.TaskAdapter;
 import com.github.galcyurio.freetodo.mvp.contract.TaskContract;
-import com.github.galcyurio.freetodo.mvp.presenter.TaskPresenter;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -31,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class TaskActivity extends BaseActivity implements TaskContract.View {
 
-    @Inject TaskPresenter mPresenter;
+    @Inject TaskContract.Presenter mPresenter;
     @Inject TaskAdapter mTaskAdapter;
 
     @BindView(R.id.ta_btnAddTask) View mBtnAddTask;
@@ -47,8 +46,7 @@ public class TaskActivity extends BaseActivity implements TaskContract.View {
         DaggerTaskComponent.builder()
                 .applicationComponent(TodoApplication.get(this).getApplicationComponent())
                 .taskPresenterModule(new TaskPresenterModule(this))
-                .build()
-                .inject(this);
+                .build().inject(this);
 
         mRecyclerTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerTasks.setAdapter(mTaskAdapter);

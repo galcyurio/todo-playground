@@ -1,6 +1,7 @@
 package com.github.galcyurio.freetodo.di.module;
 
 import com.github.galcyurio.freetodo.mvp.contract.TaskContract;
+import com.github.galcyurio.freetodo.mvp.presenter.TaskPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -20,6 +21,11 @@ public class TaskPresenterModule {
     @Provides
     TaskContract.View provideView() {
         return mView;
+    }
+
+    @Provides
+    TaskContract.Presenter providePresenter(TaskPresenter presenter) {
+        return presenter;
     }
 
 }
