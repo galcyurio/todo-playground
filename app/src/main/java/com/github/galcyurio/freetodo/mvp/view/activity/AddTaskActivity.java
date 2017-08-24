@@ -8,7 +8,6 @@ import com.github.galcyurio.freetodo.commons.Events;
 import com.github.galcyurio.freetodo.di.component.DaggerAddTaskComponent;
 import com.github.galcyurio.freetodo.di.module.AddTaskPresenterModule;
 import com.github.galcyurio.freetodo.mvp.contract.AddTaskContract;
-import com.github.galcyurio.freetodo.mvp.presenter.AddTaskPresenter;
 
 import javax.inject.Inject;
 
@@ -27,7 +26,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
  */
 public class AddTaskActivity extends BaseActivity implements AddTaskContract.View {
 
-    @Inject AddTaskPresenter mAddTaskPresenter;
+    @Inject AddTaskContract.Presenter mPresenter;
 
     @BindView(R.id.ata_btnWrite) View mBtnWrite;
     @BindView(R.id.ata_eTxtTitle) EditText mETxtTitle;
@@ -53,13 +52,13 @@ public class AddTaskActivity extends BaseActivity implements AddTaskContract.Vie
     @Override
     protected void onStart() {
         super.onStart();
-        mAddTaskPresenter.registerBus();
+        mPresenter.registerBus();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mAddTaskPresenter.unregisterBus();
+        mPresenter.unregisterBus();
     }
 
     @Override
