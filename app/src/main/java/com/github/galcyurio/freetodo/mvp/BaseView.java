@@ -5,5 +5,4 @@ package com.github.galcyurio.freetodo.mvp;
  */
 public interface BaseView {
     void bindEvents();
-    void bindEvents(Object view);
 }

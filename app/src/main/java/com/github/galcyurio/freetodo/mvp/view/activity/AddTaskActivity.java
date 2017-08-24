@@ -81,9 +81,6 @@ public class AddTaskActivity extends BaseActivity implements AddTaskContract.Vie
     }
 
     @Override
-    public void bindEvents(Object view) {}
-
-    @Override
     public void showNotSavedMessage() {
         Toast.makeText(this, R.string.string_not_saved, Toast.LENGTH_SHORT).show();
     }

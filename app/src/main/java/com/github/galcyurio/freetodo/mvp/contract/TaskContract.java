@@ -14,6 +14,8 @@ import java.util.List;
 public interface TaskContract {
 
     interface View extends BaseView {
+        void bindEvents(Object view);
+
         void showAddTaskUi();
 
         void showFilterPopupUi();
