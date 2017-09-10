@@ -2,11 +2,8 @@ package com.github.galcyurio.freetodo.mvp.view.activity;
 
 import com.github.galcyurio.freetodo.R;
 import com.github.galcyurio.freetodo.app.BaseActivity;
-import com.github.galcyurio.freetodo.app.TodoApplication;
 import com.github.galcyurio.freetodo.commons.BusProvider;
 import com.github.galcyurio.freetodo.commons.Events;
-import com.github.galcyurio.freetodo.di.component.DaggerAddTaskComponent;
-import com.github.galcyurio.freetodo.di.module.AddTaskPresenterModule;
 import com.github.galcyurio.freetodo.mvp.contract.AddTaskContract;
 
 import javax.inject.Inject;
@@ -38,11 +35,6 @@ public class AddTaskActivity extends BaseActivity implements AddTaskContract.Vie
         setContentView(R.layout.activity_add_task);
         ButterKnife.bind(this);
         bindEvents();
-
-        DaggerAddTaskComponent.builder()
-                .applicationComponent(TodoApplication.get(this).getApplicationComponent())
-                .addTaskPresenterModule(new AddTaskPresenterModule(this))
-                .build().inject(this);
 
         ActionBar actionBar = checkNotNull(getActionBar());
         actionBar.setDisplayHomeAsUpEnabled(true);

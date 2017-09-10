@@ -2,13 +2,10 @@ package com.github.galcyurio.freetodo.mvp.view.activity;
 
 import com.github.galcyurio.freetodo.R;
 import com.github.galcyurio.freetodo.app.BaseActivity;
-import com.github.galcyurio.freetodo.app.TodoApplication;
 import com.github.galcyurio.freetodo.commons.BusProvider;
 import com.github.galcyurio.freetodo.commons.Events;
 import com.github.galcyurio.freetodo.commons.FilterType;
 import com.github.galcyurio.freetodo.data.model.Task;
-import com.github.galcyurio.freetodo.di.component.DaggerTaskComponent;
-import com.github.galcyurio.freetodo.di.module.TaskPresenterModule;
 import com.github.galcyurio.freetodo.mvp.adapter.TaskAdapter;
 import com.github.galcyurio.freetodo.mvp.contract.TaskContract;
 import com.google.common.collect.Lists;
@@ -42,11 +39,6 @@ public class TaskActivity extends BaseActivity implements TaskContract.View {
         setContentView(R.layout.activity_task);
         ButterKnife.bind(this);
         bindEvents();
-
-        DaggerTaskComponent.builder()
-                .applicationComponent(TodoApplication.get(this).getApplicationComponent())
-                .taskPresenterModule(new TaskPresenterModule(this))
-                .build().inject(this);
 
         mRecyclerTasks.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRecyclerTasks.setAdapter(mTaskAdapter);

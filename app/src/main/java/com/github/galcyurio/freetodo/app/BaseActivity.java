@@ -1,14 +1,14 @@
 package com.github.galcyurio.freetodo.app;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import dagger.android.DaggerActivity;
 import timber.log.Timber;
 
 /**
  * @author galcyurio
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends DaggerActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -56,7 +56,8 @@ dependencies {
     compile "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
 
     // Etc
-    compile "com.google.guava:guava:$rootProject.guavaVersion"
+    compile "com.google.guava:guava:$rootProject.guavaVersion-android"
+    annotationProcessor "com.google.guava:guava:$rootProject.guavaVersion"
     compile "com.jakewharton:butterknife:$rootProject.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknifeVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$rootProject.jacksonVersion"

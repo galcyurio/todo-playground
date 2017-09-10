@@ -7,34 +7,29 @@ import com.github.galcyurio.freetodo.di.component.DaggerApplicationComponent;
 import com.github.galcyurio.freetodo.di.module.ApplicationModule;
 import com.github.galcyurio.freetodo.di.module.DatabaseModule;
 
-import android.app.Application;
-import android.content.Context;
+import dagger.android.AndroidInjector;
+import dagger.android.DaggerApplication;
 import timber.log.Timber;
 
 /**
  * @author galcyurio
  */
-public class TodoApplication extends Application {
-
-    private ApplicationComponent mApplicationComponent;
+public class TodoApplication extends DaggerApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
         initTimber();
+    }
 
-        mApplicationComponent = DaggerApplicationComponent.builder()
+    @Override
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        ApplicationComponent component = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .databaseModule(new DatabaseModule())
                 .build();
-    }
-
-    public static TodoApplication get(Context context) {
-        return (TodoApplication) context.getApplicationContext();
-    }
-
-    public ApplicationComponent getApplicationComponent() {
-        return mApplicationComponent;
+        component.inject(this);
+        return component;
     }
 
     private void initTimber() {

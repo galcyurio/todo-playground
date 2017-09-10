@@ -1,9 +1,9 @@
 package com.github.galcyurio.freetodo.app;
 
-import android.app.Fragment;
+import dagger.android.DaggerFragment;
 
 /**
  * @author galcyurio
  */
-public class BaseFragment extends Fragment {
+public class BaseFragment extends DaggerFragment {
 }

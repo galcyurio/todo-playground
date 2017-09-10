@@ -41,7 +41,7 @@ ext {
     daggerVersion = '2.11'
     butterknifeVersion = '8.8.1'
 
-    guavaVersion = '23.0-android'
+    guavaVersion = '23.0'
     jacksonVersion = '2.9.0'
     lombokVersion = '1.16.18'
     timberVersion = '4.5.1'

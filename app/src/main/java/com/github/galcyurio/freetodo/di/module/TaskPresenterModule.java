@@ -2,30 +2,25 @@ package com.github.galcyurio.freetodo.di.module;
 
 import com.github.galcyurio.freetodo.mvp.contract.TaskContract;
 import com.github.galcyurio.freetodo.mvp.presenter.TaskPresenter;
+import com.github.galcyurio.freetodo.mvp.view.activity.TaskActivity;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
+import dagger.android.ContributesAndroidInjector;
 
 /**
  * @author galcyurio
  */
 @Module
-public class TaskPresenterModule {
+public abstract class TaskPresenterModule {
 
-    private final TaskContract.View mView;
+    @ContributesAndroidInjector
+    abstract TaskActivity taskActivity();
 
-    public TaskPresenterModule(TaskContract.View view) {
-        mView = view;
-    }
+    @Binds
+    abstract TaskContract.Presenter taskPresenter(TaskPresenter presenter);
 
-    @Provides
-    TaskContract.View provideView() {
-        return mView;
-    }
-
-    @Provides
-    TaskContract.Presenter providePresenter(TaskPresenter presenter) {
-        return presenter;
-    }
+    @Binds
+    abstract TaskContract.View taskView(TaskActivity view);
 
 }
