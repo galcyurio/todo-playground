@@ -3,9 +3,10 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.1.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -15,6 +16,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
@@ -23,27 +25,27 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 25
-    buildToolsVersion = '25.0.2'
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.3'
     minSdkVersion = 21
-    targetSdkVersion = 25
+    targetSdkVersion = 27
     versionCode = 1
     versionName = '1.0-SNAPSHOT'
 
-    constraintLayoutVersion = '1.0.2'
-    supportLibraryVersion = '25.3.1'
+    constraintLayoutVersion = '1.1.0'
+    supportLibraryVersion = '27.1.1'
     junitVersion = '4.12'
     espressoVersion = '2.2.2'
-    assertjVersion = '3.8.0'
+    assertjVersion = '3.10.0'
     robolectricVersion = '3.4.2'
-    mockitoVersion = '2.8.47'
+    mockitoVersion = '2.18.3'
 
-    daggerVersion = '2.11'
+    daggerVersion = '2.16'
     butterknifeVersion = '8.8.1'
 
-    guavaVersion = '23.0'
-    jacksonVersion = '2.9.0'
-    lombokVersion = '1.16.18'
-    timberVersion = '4.5.1'
+    guavaVersion = '25.0'
+    jacksonVersion = '2.9.5'
+    lombokVersion = '1.16.20'
+    timberVersion = '4.7.0'
     glassfishAnnotationVersion = '10.0-b28'
 }
