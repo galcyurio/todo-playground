@@ -1,12 +1,6 @@
-# Free TO-DO
-Welcome to free todo github page.
-
 ## Goal
 The goal of this project is just to improve my skills.<br>
 Also make android best practice samples.
-
-## Warning
-This project is developing now.
 
 ## Environment
 This android application made with 
@@ -17,13 +11,3 @@ This android application made with
 [Robolectric](https://github.com/robolectric/robolectric)
 and etc.
 <br>
-
-## Start this application
-````git
-git clone https://github.com/galcyurio/free-todo.git
-
-git checkout todo-mvp-dagger2-component-dependency
-````
-
-## License
-Apache License 2.0
