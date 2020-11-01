@@ -7,6 +7,7 @@ dependencies {
     implementation(Deps.Kotlin.stdlib)
     testImplementation(Deps.junit)
     testImplementation(Deps.assertj)
+    testImplementation(Deps.mockk)
 }
 
 java {

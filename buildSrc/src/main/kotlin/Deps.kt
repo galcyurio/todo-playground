@@ -15,6 +15,8 @@ object Deps {
 
     const val junit = "junit:junit:4.12"
     const val assertj = "org.assertj:assertj-core:3.18.0"
+    const val mockk = "io.mockk:mockk:1.10.2"
+
     const val androidxJunit = "androidx.test.ext:junit:1.1.1"
     const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
 }
