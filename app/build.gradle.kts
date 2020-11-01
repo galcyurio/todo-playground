@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Constants.compileSdkVersion)
 
     defaultConfig {
         applicationId = "com.github.galcyurio.todo"
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+        minSdkVersion(Constants.minSdkVersion)
+        targetSdkVersion(Constants.targetSdkVersion)
+        versionCode = Constants.versionCode
+        versionName = Constants.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

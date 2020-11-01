@@ -5,25 +5,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(Constants.compileSdkVersion)
 
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(29)
-        versionCode = 1
-        versionName = "1.0"
+        minSdkVersion(Constants.minSdkVersion)
+        targetSdkVersion(Constants.targetSdkVersion)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
 }
 
@@ -36,5 +24,4 @@ dependencies {
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.androidxJunit)
     androidTestImplementation(Deps.espressoCore)
-
 }
