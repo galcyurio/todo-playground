@@ -4,7 +4,7 @@ plugins {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72")
+    implementation(Deps.Kotlin.stdlib)
 }
 
 java {
