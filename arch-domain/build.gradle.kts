@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(Deps.Kotlin.stdlib)
+    testImplementation(Deps.junit)
 }
 
 java {
