@@ -6,6 +6,7 @@ plugins {
 dependencies {
     implementation(Deps.Kotlin.stdlib)
     testImplementation(Deps.junit)
+    testImplementation(Deps.assertj)
 }
 
 java {

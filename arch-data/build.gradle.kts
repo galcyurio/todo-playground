@@ -22,6 +22,7 @@ dependencies {
     api(project(":arch-domain"))
 
     testImplementation(Deps.junit)
+    testImplementation(Deps.assertj)
     androidTestImplementation(Deps.androidxJunit)
     androidTestImplementation(Deps.espressoCore)
 }

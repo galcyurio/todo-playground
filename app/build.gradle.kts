@@ -33,6 +33,7 @@ dependencies {
     implementation(project(":arch-data"))
 
     testImplementation(Deps.junit)
+    testImplementation(Deps.assertj)
     androidTestImplementation(Deps.androidxJunit)
     androidTestImplementation(Deps.espressoCore)
 }
