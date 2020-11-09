@@ -7,6 +7,12 @@ object Deps {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$version"
     }
 
+    object Coroutines {
+        private const val version = "1.4.1"
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+    }
+
     object AndroidX {
         const val coreKtx = "androidx.core:core-ktx:1.3.0"
         const val appCompat = "androidx.appcompat:appcompat:1.1.0"

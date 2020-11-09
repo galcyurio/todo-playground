@@ -27,6 +27,7 @@ android {
 
 dependencies {
     implementation(Deps.Kotlin.stdlib)
+    implementation(Deps.Coroutines.android)
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appCompat)
     implementation(Deps.AndroidX.constraintLayout)
