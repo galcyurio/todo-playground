@@ -20,7 +20,11 @@ class SaveTaskUseCaseTest {
     @Test
     fun `업무를 저장할 수 있어야 한다`() = runBlocking {
         // given
-        val task = TaskEntity("foo", "bar", false)
+        val task = TaskEntity(
+                title = "foo",
+                description = "bar",
+                isCompleted = false
+        )
 
         // when
         saveTask(task)
