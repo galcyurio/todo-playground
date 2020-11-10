@@ -19,6 +19,13 @@ object Deps {
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
     }
 
+    object Room {
+        private const val version = "2.2.5"
+        const val ktx = "androidx.room:room-ktx:$version"
+        const val compiler = "androidx.room:room-compiler:$version"
+        const val testing = "androidx.room:room-testing:$version"
+    }
+
     const val junit = "junit:junit:4.12"
     const val assertj = "org.assertj:assertj-core:3.18.0"
     const val mockk = "io.mockk:mockk:1.10.2"

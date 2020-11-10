@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("kotlin-kapt")
 }
 
 android {
@@ -20,6 +21,10 @@ dependencies {
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appCompat)
     api(project(":arch-domain"))
+
+    implementation(Deps.Room.ktx)
+    kapt(Deps.Room.compiler)
+    testImplementation(Deps.Room.testing)
 
     testImplementation(Deps.junit)
     testImplementation(Deps.assertj)
