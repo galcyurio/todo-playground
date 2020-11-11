@@ -31,4 +31,5 @@ dependencies {
     testImplementation(Deps.mockk)
     androidTestImplementation(Deps.androidxJunit)
     androidTestImplementation(Deps.espressoCore)
+    androidTestImplementation(Deps.coreTesting)
 }
