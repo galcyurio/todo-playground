@@ -7,6 +7,6 @@ import androidx.room.RoomDatabase
     entities = [Task::class],
     version = 1
 )
-abstract class AppDatabase : RoomDatabase() {
+internal abstract class AppDatabase : RoomDatabase() {
     abstract fun taskDao(): TaskDao
 }
