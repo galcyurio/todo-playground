@@ -6,9 +6,7 @@ import kotlinx.coroutines.withContext
 class DeleteTaskUseCase(
         private val taskRepository: TaskRepository
 ) {
-    suspend operator fun invoke(id: Long) = withContext(Dispatchers.Default) {
-        taskRepository.deleteById(id)
+    suspend operator fun invoke(task: TaskEntity) = withContext(Dispatchers.Default) {
+        taskRepository.delete(task)
     }
-
-    suspend operator fun invoke(task: TaskEntity) = invoke(task.id)
 }

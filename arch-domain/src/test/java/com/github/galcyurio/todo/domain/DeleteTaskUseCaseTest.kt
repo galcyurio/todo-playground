@@ -31,6 +31,6 @@ class DeleteTaskUseCaseTest {
         deleteTask(task)
 
         // then
-        coVerify { taskRepository.deleteById(task.id) }
+        coVerify { taskRepository.delete(task) }
     }
 }

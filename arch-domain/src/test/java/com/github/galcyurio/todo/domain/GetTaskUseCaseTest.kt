@@ -1,8 +1,8 @@
 package com.github.galcyurio.todo.domain
 
 import io.mockk.MockKAnnotations
+import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.every
 import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
@@ -28,7 +28,7 @@ class GetTaskUseCaseTest {
                 description = "bar",
                 isCompleted = false
         )
-        every { taskRepository.findById(expected.id) } returns expected
+        coEvery { taskRepository.findById(expected.id) } returns expected
 
         // when
         val actual = getTask(expected.id)

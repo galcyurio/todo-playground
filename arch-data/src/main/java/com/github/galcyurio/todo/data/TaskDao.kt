@@ -11,7 +11,7 @@ internal interface TaskDao {
     suspend fun getTasks(): List<Task>
 
     @Query("SELECT * FROM tasks WHERE id == :id")
-    suspend fun getTask(id: Long): Task
+    suspend fun getTask(id: Long): Task?
 
     @Delete
     suspend fun delete(task: Task)
