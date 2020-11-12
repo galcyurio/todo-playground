@@ -5,7 +5,6 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.github.galcyurio.todo.data.util.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matchers.*
 import org.junit.After
@@ -42,28 +41,28 @@ class TaskDaoTest {
     }
 
     @Test
-    fun getTasks() {
+    fun getTasks() = runBlocking {
         // when
-        val actual = taskDao.getTasks().getOrAwaitValue()
+        val actual = taskDao.getTasks()
 
         // then
         assertThat(actual, contains(task1, task2, task3))
     }
 
     @Test
-    fun getTask() {
+    fun getTask() = runBlocking {
         // when
-        val actual = taskDao.getTask(1).getOrAwaitValue()
+        val actual = taskDao.getTask(1)
 
         // then
         assertThat(actual, equalTo(task1))
     }
 
     @Test
-    fun deleteTask() {
+    fun deleteTask() = runBlocking {
         // when
         taskDao.delete(task1)
-        val actual = taskDao.getTasks().getOrAwaitValue()
+        val actual = taskDao.getTasks()
 
         // then
         assertThat(actual, not(contains(task1)))
@@ -71,7 +70,7 @@ class TaskDaoTest {
     }
 
     @Test
-    fun updateTask() {
+    fun updateTask() = runBlocking {
         // given
         val completedTask = task1.copy(isCompleted = true)
 
@@ -79,7 +78,7 @@ class TaskDaoTest {
         taskDao.update(completedTask)
 
         // then
-        val tasks = taskDao.getTasks().getOrAwaitValue()
+        val tasks = taskDao.getTasks()
         assertThat(tasks, hasItem(equalTo(completedTask)))
     }
 }
