@@ -51,6 +51,15 @@ class TaskDaoTest {
     }
 
     @Test
+    fun getTask() {
+        // when
+        val actual = taskDao.getTask(1).getOrAwaitValue()
+
+        // then
+        assertThat(actual, equalTo(task1))
+    }
+
+    @Test
     fun deleteTask() {
         // when
         taskDao.delete(task1)
