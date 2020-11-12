@@ -2,6 +2,7 @@ package com.github.galcyurio.todo.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 
@@ -12,4 +13,7 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks")
     fun getTasks(): LiveData<List<Task>>
+
+    @Delete
+    fun delete(task: Task)
 }

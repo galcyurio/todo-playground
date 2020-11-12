@@ -8,6 +8,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.galcyurio.todo.data.util.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matchers.contains
+import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -48,5 +49,16 @@ class TaskDaoTest {
 
         // then
         assertThat(actual, contains(task1, task2, task3))
+    }
+
+    @Test
+    fun deleteTask() {
+        // when
+        taskDao.delete(task1)
+        val actual = taskDao.getTasks().getOrAwaitValue()
+
+        // then
+        assertThat(actual, not(contains(task1)))
+        assertThat(actual, contains(task2, task3))
     }
 }
