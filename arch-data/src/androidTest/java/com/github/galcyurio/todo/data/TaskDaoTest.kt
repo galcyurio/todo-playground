@@ -7,8 +7,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.github.galcyurio.todo.data.util.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.Matchers.contains
-import org.hamcrest.Matchers.not
+import org.hamcrest.Matchers.*
 import org.junit.After
 import org.junit.Assert.assertThat
 import org.junit.Before
@@ -60,5 +59,18 @@ class TaskDaoTest {
         // then
         assertThat(actual, not(contains(task1)))
         assertThat(actual, contains(task2, task3))
+    }
+
+    @Test
+    fun updateTask() {
+        // given
+        val completedTask = task1.copy(isCompleted = true)
+
+        // when
+        taskDao.update(completedTask)
+
+        // then
+        val tasks = taskDao.getTasks().getOrAwaitValue()
+        assertThat(tasks, hasItem(equalTo(completedTask)))
     }
 }
