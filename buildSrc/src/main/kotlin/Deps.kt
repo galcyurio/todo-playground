@@ -26,6 +26,8 @@ object Deps {
         const val testing = "androidx.room:room-testing:$version"
     }
 
+    const val javaxInject = "javax.inject:javax.inject:1"
+
     object Hilt {
         private const val version = "2.28-alpha"
         private const val viewModelVersion = "1.0.0-alpha02"

@@ -6,6 +6,8 @@ plugins {
 dependencies {
     implementation(Deps.Kotlin.stdlib)
     api(Deps.Coroutines.core)
+    implementation(Deps.javaxInject)
+
     testImplementation(Deps.junit)
     testImplementation(Deps.assertj)
     testImplementation(Deps.mockk)
