@@ -16,7 +16,7 @@ android {
         versionCode = Constants.versionCode
         versionName = Constants.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.github.galcyurio.todo.HiltTestRunner"
     }
 
     buildTypes {
