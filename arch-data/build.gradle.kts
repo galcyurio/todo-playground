@@ -29,7 +29,7 @@ dependencies {
     testImplementation(Deps.junit)
     testImplementation(Deps.assertj)
     testImplementation(Deps.mockk)
-    androidTestImplementation(Deps.androidxJunit)
+    androidTestImplementation(Deps.androidxJunitKtx)
     androidTestImplementation(Deps.espressoCore)
     androidTestImplementation(Deps.coreTesting)
 }
