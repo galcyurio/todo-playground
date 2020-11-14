@@ -33,6 +33,12 @@ object Deps {
         const val androidCompiler = "com.google.dagger:hilt-android-compiler:$version"
     }
 
+    object Navigation {
+        private const val version = "2.3.1"
+        const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+        const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+    }
+
     const val junit = "junit:junit:4.12"
     const val assertj = "org.assertj:assertj-core:3.18.0"
     const val mockk = "io.mockk:mockk:1.10.2"
