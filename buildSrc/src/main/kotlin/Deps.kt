@@ -28,10 +28,13 @@ object Deps {
 
     object Hilt {
         private const val version = "2.28-alpha"
+        private const val viewModelVersion = "1.0.0-alpha02"
+
         const val androidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
         const val androidCompiler = "com.google.dagger:hilt-android-compiler:$version"
-        const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
+        const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:$viewModelVersion"
+        const val viewModelCompiler = "androidx.hilt:hilt-compiler:$viewModelVersion"
         const val androidTesting = "com.google.dagger:hilt-android-testing:$version"
     }
 

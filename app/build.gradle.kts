@@ -52,6 +52,7 @@ dependencies {
     implementation(Deps.Hilt.android)
     kapt(Deps.Hilt.androidCompiler)
     implementation(Deps.Hilt.viewModel)
+    kapt(Deps.Hilt.viewModelCompiler)
     androidTestImplementation(Deps.Hilt.androidTesting)
     kaptAndroidTest(Deps.Hilt.androidCompiler)
 
