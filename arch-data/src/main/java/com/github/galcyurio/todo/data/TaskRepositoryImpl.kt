@@ -2,8 +2,9 @@ package com.github.galcyurio.todo.data
 
 import com.github.galcyurio.todo.domain.TaskEntity
 import com.github.galcyurio.todo.domain.TaskRepository
+import javax.inject.Inject
 
-internal class TaskRepositoryImpl(
+class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao
 ) : TaskRepository {
     override suspend fun save(task: TaskEntity) {

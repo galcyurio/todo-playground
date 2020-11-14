@@ -21,8 +21,9 @@ dependencies {
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appCompat)
     api(project(":arch-domain"))
+    implementation(Deps.javaxInject)
 
-    implementation(Deps.Room.ktx)
+    api(Deps.Room.ktx)
     kapt(Deps.Room.compiler)
     testImplementation(Deps.Room.testing)
 

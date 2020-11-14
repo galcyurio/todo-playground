@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.github.galcyurio.todo.domain.TaskEntity
 
 @Entity(tableName = "tasks")
-internal data class Task(
+data class Task(
     val title: String,
     val description: String,
     val isCompleted: Boolean,

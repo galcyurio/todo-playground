@@ -3,7 +3,7 @@ package com.github.galcyurio.todo.data
 import androidx.room.*
 
 @Dao
-internal interface TaskDao {
+interface TaskDao {
     @Insert
     suspend fun insertAll(tasks: List<Task>)
 
