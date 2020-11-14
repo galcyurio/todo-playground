@@ -61,4 +61,5 @@ dependencies {
     testImplementation(Deps.mockk)
     androidTestImplementation(Deps.androidxJunitKtx)
     androidTestImplementation(Deps.espressoCore)
+    androidTestImplementation(Deps.testCoreKtx)
 }
