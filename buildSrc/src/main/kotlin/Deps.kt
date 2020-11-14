@@ -31,6 +31,7 @@ object Deps {
         const val androidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
         const val android = "com.google.dagger:hilt-android:$version"
         const val androidCompiler = "com.google.dagger:hilt-android-compiler:$version"
+        const val viewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
     }
 
     object Navigation {
