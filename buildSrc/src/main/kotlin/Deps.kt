@@ -26,6 +26,13 @@ object Deps {
         const val testing = "androidx.room:room-testing:$version"
     }
 
+    object Hilt {
+        private const val version = "2.28-alpha"
+        const val androidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
+        const val android = "com.google.dagger:hilt-android:$version"
+        const val androidCompiler = "com.google.dagger:hilt-android-compiler:$version"
+    }
+
     const val junit = "junit:junit:4.12"
     const val assertj = "org.assertj:assertj-core:3.18.0"
     const val mockk = "io.mockk:mockk:1.10.2"

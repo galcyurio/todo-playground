@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath(Deps.androidGradlePlugin)
         classpath(Deps.Kotlin.gradlePlugin)
+        classpath(Deps.Hilt.androidGradlePlugin)
     }
 }
 
