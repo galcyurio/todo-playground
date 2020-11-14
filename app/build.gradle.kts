@@ -52,6 +52,8 @@ dependencies {
     implementation(Deps.Hilt.android)
     kapt(Deps.Hilt.androidCompiler)
     implementation(Deps.Hilt.viewModel)
+    androidTestImplementation(Deps.Hilt.androidTesting)
+    kaptAndroidTest(Deps.Hilt.androidCompiler)
 
     implementation(Deps.Navigation.fragmentKtx)
     implementation(Deps.Navigation.uiKtx)
