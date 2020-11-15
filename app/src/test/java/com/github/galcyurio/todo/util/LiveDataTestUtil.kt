@@ -1,4 +1,4 @@
-package com.github.galcyurio.todo.data.util
+package com.github.galcyurio.todo.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
