@@ -24,6 +24,7 @@ dependencies {
     implementation(Deps.Kotlin.stdlib)
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appCompat)
+    api(Deps.AndroidX.lifecycleKtx)
     implementation(Deps.javaxInject)
 
     api(Deps.Room.ktx)
