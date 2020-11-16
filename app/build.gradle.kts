@@ -48,7 +48,7 @@ dependencies {
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appCompat)
     implementation(Deps.AndroidX.constraintLayout)
-    implementation(project(":arch-data"))
+    implementation(project(":data"))
 
     implementation(Deps.Hilt.android)
     kapt(Deps.Hilt.androidCompiler)

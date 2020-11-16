@@ -1,3 +1,3 @@
-include(":arch-data")
+include(":data")
 include(":app")
 rootProject.name = "ToDoPlayground"
