@@ -1,5 +1,6 @@
 package com.github.galcyurio.todo.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -8,7 +9,7 @@ interface TaskDao {
     suspend fun insertAll(tasks: List<Task>)
 
     @Query("SELECT * FROM tasks")
-    suspend fun getTasks(): List<Task>
+    fun getTasks(): LiveData<List<Task>>
 
     @Query("SELECT * FROM tasks WHERE id == :id")
     suspend fun getTask(id: Long): Task?

@@ -1,7 +1,12 @@
 package com.github.galcyurio.todo.data
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
+import androidx.lifecycle.switchMap
 import com.github.galcyurio.todo.domain.TaskEntity
 import com.github.galcyurio.todo.domain.TaskRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TaskRepositoryImpl @Inject constructor(
@@ -19,8 +24,10 @@ class TaskRepositoryImpl @Inject constructor(
         return taskDao.getTask(id)?.toEntity()
     }
 
-    override suspend fun findAll(): List<TaskEntity> {
-        return taskDao.getTasks().map(Task::toEntity)
+    override suspend fun findAll(): LiveData<List<TaskEntity>> = withContext(Dispatchers.Default) {
+        return@withContext taskDao.getTasks().switchMap { tasks ->
+            liveData { emit(tasks.map(Task::toEntity)) }
+        }
     }
 
     override suspend fun update(task: TaskEntity) {

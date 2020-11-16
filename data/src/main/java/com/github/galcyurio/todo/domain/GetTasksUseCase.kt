@@ -1,13 +1,12 @@
 package com.github.galcyurio.todo.domain
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import androidx.lifecycle.LiveData
 import javax.inject.Inject
 
 class GetTasksUseCase @Inject constructor(
     private val taskRepository: TaskRepository
 ) {
-    suspend operator fun invoke(): List<TaskEntity> = withContext(Dispatchers.Default) {
-        return@withContext taskRepository.findAll()
+    suspend operator fun invoke(): LiveData<List<TaskEntity>> {
+        return taskRepository.findAll()
     }
 }
