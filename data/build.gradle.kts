@@ -26,6 +26,8 @@ dependencies {
     kapt(Deps.Room.compiler)
     testImplementation(Deps.Room.testing)
 
+    testImplementation(project(":test-shared"))
+    androidTestImplementation(project(":test-shared"))
     testImplementation(Deps.junit)
     testImplementation(Deps.assertj)
     testImplementation(Deps.mockk)

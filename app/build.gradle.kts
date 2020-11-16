@@ -60,6 +60,8 @@ dependencies {
     implementation(Deps.Navigation.fragmentKtx)
     implementation(Deps.Navigation.uiKtx)
 
+    testImplementation(project(":test-shared"))
+    androidTestImplementation(project(":test-shared"))
     testImplementation(Deps.junit)
     testImplementation(Deps.assertj)
     testImplementation(Deps.mockk)

@@ -3,8 +3,8 @@ package com.github.galcyurio.todo.tasks
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.github.galcyurio.todo.domain.GetTasksUseCase
 import com.github.galcyurio.todo.domain.TaskEntity
-import com.github.galcyurio.todo.util.MainCoroutineRule
-import com.github.galcyurio.todo.util.getOrAwaitValue
+import com.github.galcyurio.todo.test.MainCoroutineRule
+import com.github.galcyurio.todo.test.getOrAwaitValue
 import io.mockk.coEvery
 import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
