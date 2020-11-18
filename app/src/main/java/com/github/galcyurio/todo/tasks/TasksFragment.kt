@@ -1,11 +1,11 @@
 package com.github.galcyurio.todo.tasks
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.databinding.TasksFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +21,7 @@ class TasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = TasksFragmentBinding.inflate(inflater, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -33,4 +34,19 @@ class TasksFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         // TODO: Use the ViewModel
     }
+
+    //region Menu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.tasks_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+        R.id.menu_add -> {
+            val action = TasksFragmentDirections.actionTasksFragmentToAddEditTaskFragment()
+            findNavController().navigate(action)
+            true
+        }
+        else -> false
+    }
+    //endregion
 }
