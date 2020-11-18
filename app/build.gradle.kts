@@ -42,7 +42,8 @@ android {
     }
 
     packagingOptions {
-        exclude("META-INF/*")
+        exclude("**/attach_hotspot_windows.dll")
+        exclude("META-INF/**")
     }
 }
 
