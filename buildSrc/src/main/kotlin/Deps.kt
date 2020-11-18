@@ -46,6 +46,7 @@ object Deps {
         private const val version = "2.3.1"
         const val fragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
         const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+        const val testing = "androidx.navigation:navigation-testing:$version"
     }
 
     const val junit = "junit:junit:4.12"

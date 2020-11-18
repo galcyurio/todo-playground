@@ -63,6 +63,7 @@ dependencies {
 
     implementation(Deps.Navigation.fragmentKtx)
     implementation(Deps.Navigation.uiKtx)
+    androidTestImplementation(Deps.Navigation.testing)
 
     testImplementation(project(":test-shared"))
     androidTestImplementation(project(":test-shared"))
