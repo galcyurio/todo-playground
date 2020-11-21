@@ -14,6 +14,7 @@ class TasksFragment : Fragment() {
     private var _binding: TasksFragmentBinding? = null
     private val binding get() = _binding!!
     private val viewModel: TasksViewModel by viewModels()
+    private val adapter = TasksAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,6 +22,7 @@ class TasksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = TasksFragmentBinding.inflate(inflater, container, false)
+        binding.recyclerView.adapter = adapter
         setHasOptionsMenu(true)
         return binding.root
     }
@@ -30,9 +32,9 @@ class TasksFragment : Fragment() {
         _binding = null
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.tasks.observe(viewLifecycleOwner, adapter::submit)
     }
 
     //region Menu
@@ -40,7 +42,7 @@ class TasksFragment : Fragment() {
         inflater.inflate(R.menu.tasks_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = when(item.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.menu_add -> {
             val action = TasksFragmentDirections.actionTasksFragmentToAddEditTaskFragment()
             findNavController().navigate(action)
