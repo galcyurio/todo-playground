@@ -1,13 +1,13 @@
 package com.github.galcyurio.todo.tasks
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.MutableLiveData
 import com.github.galcyurio.todo.domain.GetTasksUseCase
 import com.github.galcyurio.todo.domain.TaskEntity
 import com.github.galcyurio.todo.test.MainCoroutineRule
-import com.github.galcyurio.todo.test.getOrAwaitValue
 import io.mockk.coEvery
+import io.mockk.coVerify
 import io.mockk.mockk
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,13 +25,12 @@ class TasksViewModelTest {
     @Before
     fun setUp() {
         getTasks = mockk()
-        coEvery { getTasks() } returns listOf(task1, task2)
+        coEvery { getTasks() } returns MutableLiveData(listOf(task1, task2))
         tasksViewModel = TasksViewModel(getTasks)
     }
 
     @Test
     fun `생성되면 업무 목록을 불러와야 한다`() {
-        val actual = tasksViewModel.tasks.getOrAwaitValue()
-        assertThat(actual).contains(task1, task2)
+        coVerify { getTasks() }
     }
 }
