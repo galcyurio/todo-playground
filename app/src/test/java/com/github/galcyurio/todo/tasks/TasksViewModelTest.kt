@@ -19,8 +19,8 @@ class TasksViewModelTest {
     private lateinit var tasksViewModel: TasksViewModel
     private lateinit var getTasks: GetTasksUseCase
 
-    private val task1 = TaskEntity(id = 1, title = "foo1", description = "bar1", isCompleted = false)
-    private val task2 = TaskEntity(id = 2, title = "foo2", description = "bar2", isCompleted = true)
+    private val task1 = TaskEntity.newDefault("foo1")
+    private val task2 = TaskEntity.newDefault("foo2")
 
     @Before
     fun setUp() {
