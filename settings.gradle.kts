@@ -1,4 +1,4 @@
-include(":arch-domain")
-include(":arch-data")
+include(":test-shared")
+include(":data")
 include(":app")
 rootProject.name = "ToDoPlayground"
