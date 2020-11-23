@@ -8,7 +8,7 @@ interface TaskDao {
     @Insert
     suspend fun insertAll(tasks: List<Task>)
 
-    @Query("SELECT * FROM tasks")
+    @Query("SELECT * FROM tasks ORDER BY id DESC")
     fun getTasks(): LiveData<List<Task>>
 
     @Query("SELECT * FROM tasks WHERE id == :id")
