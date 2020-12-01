@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.databinding.AddEditTaskFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,16 +37,17 @@ class AddEditTaskFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.menu_save -> {
-            TODO("업무 저장")
+            viewModel.saveTask()
+            findNavController().navigateUp()
             true
         }
         else -> super.onOptionsItemSelected(item)
     }
     //endregion
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.vm = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
     }
-
 }
