@@ -8,10 +8,11 @@ data class TaskEntity(
 ) {
     companion object {
         fun newDefault(
-            title: String
+            title: String,
+            description: String = ""
         ): TaskEntity = TaskEntity(
             title = title,
-            description = "",
+            description = description,
             isCompleted = false
         )
     }

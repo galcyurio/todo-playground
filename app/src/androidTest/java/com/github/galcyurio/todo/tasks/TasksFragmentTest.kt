@@ -8,21 +8,21 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.activityScenarioRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.github.galcyurio.todo.DatabaseModule
 import com.github.galcyurio.todo.MainActivity
 import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.addedittask.AddEditTaskFragment
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import dagger.hilt.android.testing.UninstallModules
 import org.hamcrest.Matchers.equalTo
 import org.hamcrest.Matchers.instanceOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
+@UninstallModules(DatabaseModule::class)
 @HiltAndroidTest
-@RunWith(AndroidJUnit4::class)
 class TasksFragmentTest {
     @get:Rule val hiltRule = HiltAndroidRule(this)
     @get:Rule val activityScenarioRule = activityScenarioRule<MainActivity>()
