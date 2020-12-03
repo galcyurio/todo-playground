@@ -5,8 +5,11 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import app.cash.exhaustive.Exhaustive
 import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.databinding.AddEditTaskFragmentBinding
+import com.github.galcyurio.todo.domain.SaveTaskUseCase
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,7 +41,6 @@ class AddEditTaskFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.menu_save -> {
             viewModel.saveTask()
-            findNavController().navigateUp()
             true
         }
         else -> super.onOptionsItemSelected(item)
@@ -49,5 +51,16 @@ class AddEditTaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.vm = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.saveTaskResult.observe(viewLifecycleOwner, ::onSaveTaskResultChanged)
+    }
+
+    private fun onSaveTaskResultChanged(result: SaveTaskUseCase.Result) {
+        @Exhaustive when (result) {
+            SaveTaskUseCase.Result.Success ->
+                findNavController().navigateUp()
+            SaveTaskUseCase.Result.EmptyTitle ->
+                Snackbar.make(requireView(), R.string.type_empty_title, Snackbar.LENGTH_SHORT).show()
+        }
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ToDoPlayground</string>
+
+    <string name="type_empty_title">제목을 입력해주세요.</string>
 </resources>
