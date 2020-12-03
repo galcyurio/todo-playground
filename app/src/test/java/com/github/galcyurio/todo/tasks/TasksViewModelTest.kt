@@ -31,6 +31,7 @@ class TasksViewModelTest {
 
     @Test
     fun `생성되면 업무 목록을 불러와야 한다`() {
+        tasksViewModel.tasks.observeForever {}
         coVerify { getTasks() }
     }
 }
