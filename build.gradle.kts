@@ -9,6 +9,7 @@ buildscript {
         classpath(Deps.Kotlin.gradlePlugin)
         classpath(Deps.Hilt.androidGradlePlugin)
         classpath(Deps.Navigation.plugin)
+        classpath(Deps.exhaustivePlugin)
     }
 }
 

@@ -1,5 +1,6 @@
 object Deps {
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.0"
+    const val exhaustivePlugin = "app.cash.exhaustive:exhaustive-gradle:0.1.1"
 
     object Kotlin {
         private const val version = "1.4.10"
