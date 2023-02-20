@@ -13,7 +13,7 @@ class SaveTaskUseCase @Inject constructor(
     ): Result = withContext(Dispatchers.Default) {
         if (title.isEmpty()) return@withContext Result.EmptyTitle
 
-        val task = TaskEntity.newDefault(
+        val task = Task.newDefault(
             title = title,
             description = description
         )

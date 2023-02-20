@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.github.galcyurio.todo.databinding.ItemTaskBinding
-import com.github.galcyurio.todo.domain.TaskEntity
+import com.github.galcyurio.todo.domain.Task
 import com.github.galcyurio.todo.tasks.TasksAdapter.DataHolder
 import com.github.galcyurio.todo.tasks.TasksAdapter.DataHolder.TaskDataHolder
 import com.github.galcyurio.todo.tasks.TasksAdapter.ViewHolder
@@ -39,7 +39,7 @@ class TasksAdapter : ListAdapter<DataHolder, ViewHolder>(DiffCallback) {
     //endregion
 
     //region Public APIs
-    fun submit(tasks: List<TaskEntity>) {
+    fun submit(tasks: List<Task>) {
         val dataHolders = tasks.map(::TaskDataHolder)
         submitList(dataHolders)
     }
@@ -68,7 +68,7 @@ class TasksAdapter : ListAdapter<DataHolder, ViewHolder>(DiffCallback) {
     }
 
     sealed class DataHolder {
-        data class TaskDataHolder(val task: TaskEntity) : DataHolder()
+        data class TaskDataHolder(val task: Task) : DataHolder()
     }
 
     sealed class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

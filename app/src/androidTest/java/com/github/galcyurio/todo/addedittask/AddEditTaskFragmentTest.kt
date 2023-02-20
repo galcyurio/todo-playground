@@ -6,7 +6,6 @@ import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.activityScenarioRule
-import com.github.galcyurio.todo.DatabaseModule
 import com.github.galcyurio.todo.MainActivity
 import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.tasks.TasksFragment

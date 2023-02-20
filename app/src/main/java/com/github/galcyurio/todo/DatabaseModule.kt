@@ -2,7 +2,7 @@ package com.github.galcyurio.todo
 
 import android.content.Context
 import androidx.room.Room
-import com.github.galcyurio.todo.data.AppDatabase
+import com.github.galcyurio.todo.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

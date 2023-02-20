@@ -7,7 +7,7 @@ import javax.inject.Inject
 class DeleteTaskUseCase @Inject constructor(
     private val taskRepository: TaskRepository
 ) {
-    suspend operator fun invoke(task: TaskEntity) = withContext(Dispatchers.Default) {
+    suspend operator fun invoke(task: Task) = withContext(Dispatchers.Default) {
         taskRepository.delete(task)
     }
 }

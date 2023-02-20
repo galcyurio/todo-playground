@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetTaskUseCase @Inject constructor(
     private val taskRepository: TaskRepository
 ) {
-    suspend operator fun invoke(id: Long): TaskEntity? = withContext(Dispatchers.Default) {
+    suspend operator fun invoke(id: Long): Task? = withContext(Dispatchers.Default) {
         return@withContext taskRepository.findById(id)
     }
 }

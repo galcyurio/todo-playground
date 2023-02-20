@@ -1,6 +1,6 @@
 package com.github.galcyurio.todo.domain
 
-data class TaskEntity(
+data class Task(
     val id: Long = 0,
     val title: String,
     val description: String,
@@ -10,7 +10,7 @@ data class TaskEntity(
         fun newDefault(
             title: String,
             description: String = ""
-        ): TaskEntity = TaskEntity(
+        ): Task = Task(
             title = title,
             description = description,
             isCompleted = false

@@ -5,6 +5,8 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.github.galcyurio.todo.data.local.AppDatabase
+import com.github.galcyurio.todo.data.local.TaskDao
 import com.github.galcyurio.todo.test.getOrAwaitValue
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matchers.*
@@ -20,9 +22,9 @@ class TaskDaoTest {
     private lateinit var taskDao: TaskDao
     private lateinit var db: AppDatabase
 
-    private val task1 = Task(id = 1, title = "foo1", description = "bar1", isCompleted = false)
-    private val task2 = Task(id = 2, title = "foo2", description = "bar2", isCompleted = true)
-    private val task3 = Task(id = 3, title = "foo3", description = "bar3", isCompleted = false)
+    private val task1 = TaskLocal(id = 1, title = "foo1", description = "bar1", isCompleted = false)
+    private val task2 = TaskLocal(id = 2, title = "foo2", description = "bar2", isCompleted = true)
+    private val task3 = TaskLocal(id = 3, title = "foo3", description = "bar3", isCompleted = false)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()

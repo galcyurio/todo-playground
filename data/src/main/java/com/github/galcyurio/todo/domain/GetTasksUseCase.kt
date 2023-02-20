@@ -1,12 +1,12 @@
 package com.github.galcyurio.todo.domain
 
-import androidx.lifecycle.LiveData
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class GetTasksUseCase @Inject constructor(
     private val taskRepository: TaskRepository
 ) {
-    suspend operator fun invoke(): LiveData<List<TaskEntity>> {
+    operator fun invoke(): Flow<List<Task>> {
         return taskRepository.findAll()
     }
 }

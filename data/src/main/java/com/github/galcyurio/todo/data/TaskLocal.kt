@@ -2,16 +2,16 @@ package com.github.galcyurio.todo.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.github.galcyurio.todo.domain.TaskEntity
+import com.github.galcyurio.todo.domain.Task
 
 @Entity(tableName = "tasks")
-data class Task(
+data class TaskLocal(
     val title: String,
     val description: String,
     val isCompleted: Boolean,
     @PrimaryKey(autoGenerate = true) val id: Long = 0
 ) {
-    fun toEntity(): TaskEntity = TaskEntity(
+    fun toDomain(): Task = Task(
         id = id,
         title = title,
         description = description,
@@ -19,7 +19,7 @@ data class Task(
     )
 }
 
-internal fun TaskEntity.toDto(): Task = Task(
+internal fun Task.toLocal(): TaskLocal = TaskLocal(
     title = title,
     description = description,
     isCompleted = isCompleted,

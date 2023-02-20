@@ -9,7 +9,7 @@
 
         <variable
             name="task"
-            type="com.github.galcyurio.todo.domain.TaskEntity"
+            type="com.github.galcyurio.todo.domain.Task"
             />
     </data>
 

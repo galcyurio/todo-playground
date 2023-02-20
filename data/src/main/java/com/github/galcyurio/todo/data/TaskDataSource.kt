@@ -1,8 +1,9 @@
-package com.github.galcyurio.todo.domain
+package com.github.galcyurio.todo.data
 
+import com.github.galcyurio.todo.domain.Task
 import kotlinx.coroutines.flow.Flow
 
-interface TaskRepository {
+interface TaskDataSource {
     suspend fun save(task: Task)
     suspend fun delete(task: Task)
     suspend fun findById(id: Long): Task?
