@@ -71,6 +71,7 @@ dependencies {
 
     testImplementation(project(":test-shared"))
     androidTestImplementation(project(":test-shared"))
+    androidTestImplementation(Deps.mockWebServer)
     testImplementation(Deps.junit)
     testImplementation(Deps.truth)
     testImplementation(Deps.mockk)

@@ -35,6 +35,10 @@ dependencies {
     implementation(Deps.AndroidX.appCompat)
     api(Deps.AndroidX.lifecycleKtx)
     implementation(Deps.javaxInject)
+    api(Deps.retrofit)
+    api(Deps.retrofitGson)
+    api(Deps.okhttp)
+    implementation("com.squareup.retrofit2:converter-gson")
 
     api(Deps.Room.ktx)
     kapt(Deps.Room.compiler)
@@ -42,6 +46,7 @@ dependencies {
 
     testImplementation(project(":test-shared"))
     androidTestImplementation(project(":test-shared"))
+    testImplementation(Deps.mockWebServer)
     testImplementation(Deps.junit)
     testImplementation(Deps.truth)
     testImplementation(Deps.mockk)

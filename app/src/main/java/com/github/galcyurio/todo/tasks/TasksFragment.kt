@@ -34,6 +34,11 @@ class TasksFragment : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchTasks()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

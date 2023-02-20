@@ -47,6 +47,11 @@ object Deps {
         const val plugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
     }
 
+    const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
+    const val retrofitGson = "com.squareup.retrofit2:converter-gson:2.9.0"
+    const val okhttp = "com.squareup.okhttp3:okhttp:4.10.0"
+    const val mockWebServer = "com.squareup.okhttp3:mockwebserver:4.10.0"
+
     const val junit = "junit:junit:4.12"
     const val truth = "com.google.truth:truth:1.1.3"
     const val mockk = "io.mockk:mockk:1.13.4"

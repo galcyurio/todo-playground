@@ -4,8 +4,8 @@ import com.github.galcyurio.todo.data.TaskDataSource
 import com.github.galcyurio.todo.data.TaskLocal
 import com.github.galcyurio.todo.data.toLocal
 import com.github.galcyurio.todo.domain.Task
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LocalTaskDataSource @Inject constructor(
@@ -23,9 +23,8 @@ class LocalTaskDataSource @Inject constructor(
         return taskDao.getTask(id)?.toDomain()
     }
 
-    override fun findAll(): Flow<List<Task>> {
-        return taskDao.getTasks()
-            .map { tasks -> tasks.map(TaskLocal::toDomain) }
+    override suspend fun findAll(): List<Task> = withContext(Dispatchers.Default) {
+        taskDao.getTasks().map(TaskLocal::toDomain)
     }
 
     override suspend fun update(task: Task) {

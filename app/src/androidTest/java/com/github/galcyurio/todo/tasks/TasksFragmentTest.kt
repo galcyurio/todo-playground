@@ -8,9 +8,11 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.activityScenarioRule
+import com.github.galcyurio.todo.di.DatabaseModule
 import com.github.galcyurio.todo.MainActivity
 import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.addedittask.AddEditTaskFragment
+import com.github.galcyurio.todo.di.RemoteModule
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -20,7 +22,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-@UninstallModules(DatabaseModule::class)
+@UninstallModules(DatabaseModule::class, RemoteModule::class)
 @HiltAndroidTest
 class TasksFragmentTest {
     @get:Rule val hiltRule = HiltAndroidRule(this)

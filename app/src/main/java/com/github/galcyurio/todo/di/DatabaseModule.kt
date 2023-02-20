@@ -1,4 +1,4 @@
-package com.github.galcyurio.todo
+package com.github.galcyurio.todo.di
 
 import android.content.Context
 import androidx.room.Room

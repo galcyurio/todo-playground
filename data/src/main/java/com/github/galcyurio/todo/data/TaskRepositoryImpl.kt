@@ -1,6 +1,5 @@
 package com.github.galcyurio.todo.data
 
-import androidx.lifecycle.LiveData
 import com.github.galcyurio.todo.domain.Task
 import com.github.galcyurio.todo.domain.TaskRepository
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +20,7 @@ class TaskRepositoryImpl @Inject constructor(
         return taskDataSource.findById(id)
     }
 
-    override fun findAll(): Flow<List<Task>> {
+    override suspend fun findAll(): List<Task> {
         return taskDataSource.findAll()
     }
 

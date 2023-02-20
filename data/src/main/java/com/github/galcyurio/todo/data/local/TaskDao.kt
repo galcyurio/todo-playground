@@ -10,7 +10,7 @@ interface TaskDao {
     suspend fun insertAll(tasks: List<TaskLocal>)
 
     @Query("SELECT * FROM tasks ORDER BY id DESC")
-    fun getTasks(): Flow<List<TaskLocal>>
+    fun getTasks(): List<TaskLocal>
 
     @Query("SELECT * FROM tasks WHERE id == :id")
     suspend fun getTask(id: Long): TaskLocal?
