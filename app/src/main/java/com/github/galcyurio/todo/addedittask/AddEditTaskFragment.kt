@@ -5,7 +5,6 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import app.cash.exhaustive.Exhaustive
 import com.github.galcyurio.todo.R
 import com.github.galcyurio.todo.databinding.AddEditTaskFragmentBinding
 import com.github.galcyurio.todo.domain.SaveTaskUseCase
@@ -21,7 +20,7 @@ class AddEditTaskFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = AddEditTaskFragmentBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
         return binding.root
@@ -56,7 +55,7 @@ class AddEditTaskFragment : Fragment() {
     }
 
     private fun onSaveTaskResultChanged(result: SaveTaskUseCase.Result) {
-        @Exhaustive when (result) {
+        when (result) {
             SaveTaskUseCase.Result.Success ->
                 findNavController().navigateUp()
             SaveTaskUseCase.Result.EmptyTitle ->

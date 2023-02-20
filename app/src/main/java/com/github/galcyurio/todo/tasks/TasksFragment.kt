@@ -20,7 +20,7 @@ class TasksFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = TasksFragmentBinding.inflate(inflater, container, false)
         binding.recyclerView.adapter = adapter
         setHasOptionsMenu(true)

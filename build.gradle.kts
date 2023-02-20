@@ -2,21 +2,20 @@
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath(Deps.androidGradlePlugin)
         classpath(Deps.Kotlin.gradlePlugin)
         classpath(Deps.Hilt.androidGradlePlugin)
         classpath(Deps.Navigation.plugin)
-        classpath(Deps.exhaustivePlugin)
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 

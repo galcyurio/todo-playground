@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import app.cash.exhaustive.Exhaustive
 import com.github.galcyurio.todo.databinding.ItemTaskBinding
 import com.github.galcyurio.todo.domain.TaskEntity
 import com.github.galcyurio.todo.tasks.TasksAdapter.DataHolder
@@ -28,7 +27,7 @@ class TasksAdapter : ListAdapter<DataHolder, ViewHolder>(DiffCallback) {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        @Exhaustive when (val dataHolder = getItem(position)) {
+        when (val dataHolder = getItem(position)) {
             is TaskDataHolder ->
                 (holder as TaskViewHolder).bind(dataHolder)
         }

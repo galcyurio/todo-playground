@@ -1,15 +1,17 @@
 package com.github.galcyurio.todo.addedittask
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.galcyurio.todo.domain.SaveTaskUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddEditTaskViewModel @ViewModelInject constructor(
+@HiltViewModel
+class AddEditTaskViewModel @Inject constructor(
     private val saveTask: SaveTaskUseCase
 ) : ViewModel() {
     val title = MutableLiveData<String>()

@@ -1,20 +1,20 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs")
-    id("app.cash.exhaustive")
 }
 
 android {
-    compileSdkVersion(Constants.compileSdkVersion)
+    compileSdk = Constants.compileSdkVersion
 
     defaultConfig {
         applicationId = "com.github.galcyurio.todo"
-        minSdkVersion(Constants.minSdkVersion)
-        targetSdkVersion(Constants.targetSdkVersion)
+        minSdk = Constants.minSdkVersion
+        targetSdk = Constants.targetSdkVersion
         versionCode = Constants.versionCode
         versionName = Constants.versionName
 
@@ -24,7 +24,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -43,8 +46,8 @@ android {
     }
 
     packagingOptions {
-        exclude("**/attach_hotspot_windows.dll")
-        exclude("META-INF/**")
+        jniLibs.excludes.add("**/attach_hotspot_windows.dll")
+        jniLibs.excludes.add("META-INF/**")
     }
 }
 
@@ -59,8 +62,6 @@ dependencies {
 
     implementation(Deps.Hilt.android)
     kapt(Deps.Hilt.androidCompiler)
-    implementation(Deps.Hilt.viewModel)
-    kapt(Deps.Hilt.viewModelCompiler)
     androidTestImplementation(Deps.Hilt.androidTesting)
     kaptAndroidTest(Deps.Hilt.androidCompiler)
 
@@ -71,7 +72,7 @@ dependencies {
     testImplementation(project(":test-shared"))
     androidTestImplementation(project(":test-shared"))
     testImplementation(Deps.junit)
-    testImplementation(Deps.assertj)
+    testImplementation(Deps.truth)
     testImplementation(Deps.mockk)
     androidTestImplementation(Deps.androidxJunitKtx)
     androidTestImplementation(Deps.espressoCore)

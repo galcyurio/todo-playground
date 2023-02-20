@@ -1,16 +1,16 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-android-extensions")
     id("kotlin-kapt")
 }
 
 android {
-    compileSdkVersion(Constants.compileSdkVersion)
+    compileSdk = Constants.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion(Constants.minSdkVersion)
-        targetSdkVersion(Constants.targetSdkVersion)
+        minSdk = Constants.minSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -25,7 +25,7 @@ android {
     }
 
     packagingOptions {
-        exclude("META-INF/*")
+        jniLibs.excludes.add("META-INF/*")
     }
 }
 
@@ -43,7 +43,7 @@ dependencies {
     testImplementation(project(":test-shared"))
     androidTestImplementation(project(":test-shared"))
     testImplementation(Deps.junit)
-    testImplementation(Deps.assertj)
+    testImplementation(Deps.truth)
     testImplementation(Deps.mockk)
     androidTestImplementation(Deps.androidxJunitKtx)
     androidTestImplementation(Deps.espressoCore)
